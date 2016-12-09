@@ -1,0 +1,12 @@
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\BookStore.Contracts.dll
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\BookStore.Contracts.pdb
+D:\Book\BookStore\BookStore.Contracts\obj\Debug\BookStore.Contracts.csprojResolveAssemblyReference.cache
+D:\Book\BookStore\BookStore.Contracts\obj\Debug\BookStore.Contracts.dll
+D:\Book\BookStore\BookStore.Contracts\obj\Debug\BookStore.Contracts.pdb
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\BookStore.Contracts.dll.config
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\BookStore.BussinessObjects.dll
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\EntityFramework.dll
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\BookStore.BussinessObjects.pdb
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\EntityFramework.xml
+D:\Book\BookStore\BookStore.Contracts\bin\Debug\EntityFramework.SqlServer.xml

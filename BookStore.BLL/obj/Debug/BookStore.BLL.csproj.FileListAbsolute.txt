@@ -1,0 +1,11 @@
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.BLL.dll
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.BLL.pdb
+D:\Book\BookStore\BookStore.BLL\bin\Debug\AutoMapper.dll
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.BussinessObjects.dll
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.Contracts.dll
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.BussinessObjects.pdb
+D:\Book\BookStore\BookStore.BLL\bin\Debug\BookStore.Contracts.pdb
+D:\Book\BookStore\BookStore.BLL\bin\Debug\AutoMapper.xml
+D:\Book\BookStore\BookStore.BLL\obj\Debug\BookStore.BLL.csprojResolveAssemblyReference.cache
+D:\Book\BookStore\BookStore.BLL\obj\Debug\BookStore.BLL.dll
+D:\Book\BookStore\BookStore.BLL\obj\Debug\BookStore.BLL.pdb
