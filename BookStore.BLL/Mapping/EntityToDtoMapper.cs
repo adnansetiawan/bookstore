@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookStore.BussinessObjects;
-using BookStore.BussinessObjects.dto;
+using BookStore.BussinessObjects.Dao;
+using BookStore.BussinessObjects.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

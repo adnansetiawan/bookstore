@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using BookStore.BussinessObjects;
+using BookStore.BussinessObjects.Dao;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;

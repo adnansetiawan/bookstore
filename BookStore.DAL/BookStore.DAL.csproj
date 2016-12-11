@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201612060231315_CreateBookTable.Designer.cs">
       <DependentUpon>201612060231315_CreateBookTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612100258015_AddCategoryAndUpdateBook.cs" />
+    <Compile Include="Migrations\201612100258015_AddCategoryAndUpdateBook.Designer.cs">
+      <DependentUpon>201612100258015_AddCategoryAndUpdateBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlGenericRepository.cs" />
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612060231315_CreateBookTable.resx">
       <DependentUpon>201612060231315_CreateBookTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612100258015_AddCategoryAndUpdateBook.resx">
+      <DependentUpon>201612100258015_AddCategoryAndUpdateBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
