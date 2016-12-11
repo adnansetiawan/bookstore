@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\IBookBLL.cs" />
+    <Compile Include="BLL\ICategoryBLL.cs" />
     <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
