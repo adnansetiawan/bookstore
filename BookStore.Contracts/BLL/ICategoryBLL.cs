@@ -1,4 +1,5 @@
-﻿using DtoInput = BookStore.BussinessObjects.DTO.Output;
+﻿using DtoOutput = BookStore.BussinessObjects.DTO.Output;
+using DtoInput = BookStore.BussinessObjects.DTO.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BookStore.Contracts.BLL
 {
     public interface ICategoryBLL
     {
-        List<DtoInput.CategoryDto> GetAll();
+        List<DtoOutput.CategoryDto> GetAll();
+        void AddNewCategory(DtoInput.CategoryDto NewCategory);
     }
 }

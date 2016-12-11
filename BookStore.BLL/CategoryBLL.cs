@@ -31,6 +31,11 @@ namespace BookStore.BLL
             return categoriesDto;
         }
 
-       
+        public void AddNewCategory(DtoInput.CategoryDto NewCategory)
+        {
+            var newCategory = Mapper.Map<Category>(NewCategory);
+            _categoryRepo.Insert(newCategory);
+            _unitOfWork.SaveChanges();
+        }
     }
 }
