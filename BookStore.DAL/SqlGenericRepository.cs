@@ -1,4 +1,4 @@
-﻿using BookStore.Contracts;
+﻿using BookStore.Contracts.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

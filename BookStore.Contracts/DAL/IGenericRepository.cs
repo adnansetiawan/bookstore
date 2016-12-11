@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Contracts
+namespace BookStore.Contracts.DAL
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {

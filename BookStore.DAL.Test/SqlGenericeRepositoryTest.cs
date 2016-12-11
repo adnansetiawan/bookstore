@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using BookStore.BussinessObjects.Dao;
+using BookStore.BussinessObjects.DAO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using BookStore.Contracts;
+using BookStore.Contracts.DAL;
 
 namespace BookStore.DAL.Test
 {

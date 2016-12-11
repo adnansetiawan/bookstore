@@ -49,15 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dao\Book.cs" />
-    <Compile Include="dao\Category.cs" />
-    <Compile Include="dto\BookDto.cs" />
+    <Compile Include="DAO\Book.cs" />
+    <Compile Include="DAO\Category.cs" />
+    <Compile Include="DTO\Input\BookDto.cs" />
+    <Compile Include="DTO\Input\CategoryDto.cs" />
+    <Compile Include="DTO\Output\BookDto.cs" />
+    <Compile Include="DTO\Output\CategoryDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

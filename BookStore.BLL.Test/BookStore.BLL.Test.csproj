@@ -74,6 +74,10 @@
       <Project>{AF3AB0C6-F634-4AB4-A9A0-96FE3FA588CF}</Project>
       <Name>BookStore.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj">
+      <Project>{bc73987e-cb0f-4f60-80c2-fd369e3ea074}</Project>
+      <Name>BookStore.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

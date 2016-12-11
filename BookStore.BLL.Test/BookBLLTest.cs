@@ -1,10 +1,13 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BookStore.Contracts;
-using BookStore.BussinessObjects.Dao;
+using BookStore.Contracts.DAL;
+using BookStore.BussinessObjects.DAO;
+using DtoOutput = BookStore.BussinessObjects.DTO.Output;
+using DtoInput = BookStore.BussinessObjects.DTO.Input;
 using NSubstitute;
 using System.Collections.Generic;
 using System.Linq;
+using BookStore.Core.Exceptions;
 
 namespace BookStore.BLL.Test
 {
@@ -13,15 +16,18 @@ namespace BookStore.BLL.Test
     {
         private IUnitOfWork _unitOfWork;
         private IGenericRepository<Book> _bookRepo;
+        private IGenericRepository<Category> _categoryRepo;
+
         private BookBLL _bookBLL;
         [TestInitialize]
         public void Setup()
         {
             _unitOfWork = Substitute.For<IUnitOfWork>();
             _bookRepo = Substitute.For<IGenericRepository<Book>>();
+            _categoryRepo = Substitute.For<IGenericRepository<Category>>();
             _unitOfWork.GetGenericRepository<Book>().ReturnsForAnyArgs(_bookRepo);
             _bookBLL = new BookBLL(_unitOfWork);
-            Mapping.EntityToDtoMapper.Initialize();
+            Mapping.DaoToDtoMapper.Initialize();
         }
 
         [TestCleanup]
@@ -29,11 +35,13 @@ namespace BookStore.BLL.Test
         {
             _unitOfWork = null;
             _bookRepo = null;
+            _categoryRepo = null;
             _bookBLL = null;
+
         }
 
         [TestMethod]
-        public void GetAllTest()
+        public void When_GetAll_ReturnValidData()
         {
             var books = new List<Book>
             {
@@ -45,6 +53,58 @@ namespace BookStore.BLL.Test
             Assert.AreEqual(books.Count, result.Count);
             Assert.AreEqual(books.First().Id, result.First().Id);
                 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(BLLException))]
+        public void When_Insert_TitleIsNullOrEmpty()
+        {
+            Category category = null;
+            _categoryRepo.GetById(0).ReturnsForAnyArgs(category);
+
+            var newBook = new DtoInput.BookDto()
+            {
+               
+            };
+            try
+            {
+                _bookBLL.AddNewBook(newBook);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(BLLException));
+                Assert.AreEqual(ExceptionCodes.BLLExceptions.TitleIsNullOrEmpty.ToString(), ((BLLException)ex).Code);
+                throw ex;
+            }
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(BLLException))]
+        public void When_Insert_CategoryNotValid()
+        {
+            Category category = null;
+            _categoryRepo.GetById(0).ReturnsForAnyArgs(category);
+
+            var newBook = new DtoInput.BookDto()
+            {
+                Title = "New Title",
+                CategoryId = 0
+            };
+            try
+            {
+                _bookBLL.AddNewBook(newBook);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(BLLException));
+                Assert.AreEqual(ExceptionCodes.BLLExceptions.CategoryNotFound.ToString(), ((BLLException)ex).Code);
+                throw ex;
+            }
+
+
         }
     }
 }
