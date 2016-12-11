@@ -1,7 +1,9 @@
-﻿using BookStore.BLL;
+﻿using AutoMapper;
+using BookStore.BLL;
 using BookStore.Contracts.BLL;
 using BookStore.Contracts.DAL;
 using BookStore.DAL;
+using BookStore.WebApi.Models.Request.Category.Create;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using System;
@@ -12,7 +14,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using DtoInput = BookStore.BussinessObjects.DTO.Input;
 namespace BookStore.WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -25,7 +27,13 @@ namespace BookStore.WebApi
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SimpleInjectorResolver();
-            BLL.Mapping.DaoToDtoMapper.Initialize();
+            Mapper.Initialize(cfg => {
+                cfg.AddProfile(new BLL.Mapping.DaoToDtoMapper());
+                cfg.AddProfile(new BLL.Mapping.DtoToDaoMapper());
+                cfg.AddProfile(new BLL.Mapping.DaoToDtoMapper());
+                cfg.AddProfile(new Mapping.DtoToModelMapper());
+                cfg.AddProfile(new Mapping.ModelToDtoMapper());
+            });
         }
 
         private void SimpleInjectorResolver()

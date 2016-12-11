@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="BookBLL.cs" />
+    <Compile Include="Mapping\DtoToDaoMapper.cs" />
     <Compile Include="Mapping\DaoToDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validator\BookValidator.cs" />

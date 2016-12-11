@@ -27,7 +27,7 @@ namespace BookStore.BLL.Test
             _categoryRepo = Substitute.For<IGenericRepository<Category>>();
             _unitOfWork.GetGenericRepository<Book>().ReturnsForAnyArgs(_bookRepo);
             _bookBLL = new BookBLL(_unitOfWork);
-            Mapping.DaoToDtoMapper.Initialize();
+            
         }
 
         [TestCleanup]
