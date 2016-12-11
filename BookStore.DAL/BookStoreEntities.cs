@@ -1,4 +1,4 @@
-﻿using BookStore.BussinessObjects.Dao;
+﻿using BookStore.BussinessObjects.DAO;
 using BookStore.Contracts;
 using System;
 using System.Collections.Generic;
@@ -17,5 +17,6 @@ namespace BookStore.DAL
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
