@@ -1,4 +1,4 @@
-﻿using BookStore.BussinessObjects;
+﻿using BookStore.BussinessObjects.Dao;
 using BookStore.Contracts;
 using System;
 using System.Collections.Generic;

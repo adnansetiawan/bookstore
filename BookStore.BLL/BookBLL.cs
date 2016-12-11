@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookStore.BussinessObjects;
+using BookStore.BussinessObjects.Dao;
 using BookStore.Contracts;
-using BookStore.BussinessObjects.dto;
+using BookStore.BussinessObjects.Dto;
 using AutoMapper;
 namespace BookStore.BLL
 {
@@ -18,8 +18,7 @@ namespace BookStore.BLL
         public BookBLL(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _bookRepo = _unitOfWork.GetGenericRepository<Book>();
-           
+            _bookRepo = _unitOfWork.GetGenericRepository<Book>();           
         }
 
         
