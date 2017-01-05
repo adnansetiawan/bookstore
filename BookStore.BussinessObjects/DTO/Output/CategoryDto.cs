@@ -10,6 +10,5 @@ namespace BookStore.BussinessObjects.DTO.Output
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
     }
 }
