@@ -27,6 +27,6 @@ namespace BookStore.Contracts.DAL
 
         bool Exists(TEntity entity);
 
-        int Count(Expression<Func<TEntity, bool>> filter = null);
+        long Count(Expression<Func<TEntity, bool>> filter = null);
     }
 }

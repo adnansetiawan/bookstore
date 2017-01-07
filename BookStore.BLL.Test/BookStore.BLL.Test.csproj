@@ -66,9 +66,9 @@
       <Project>{bb6d106c-8d55-4160-a561-692ef28197d2}</Project>
       <Name>BookStore.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.BussinessObjects.csproj">
+    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.Entities.csproj">
       <Project>{0fd5d93d-b884-44ed-add6-ce21e004f8e7}</Project>
-      <Name>BookStore.BussinessObjects</Name>
+      <Name>BookStore.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookStore.Contracts\BookStore.Contracts.csproj">
       <Project>{AF3AB0C6-F634-4AB4-A9A0-96FE3FA588CF}</Project>

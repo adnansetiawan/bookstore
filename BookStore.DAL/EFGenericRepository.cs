@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace BookStore.DAL
 {
-    public class SqlGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         internal BookStoreEntities Context;
         internal DbSet<TEntity> Entities;
 
-        public SqlGenericRepository(BookStoreEntities dbContext)
+        public EFGenericRepository(BookStoreEntities dbContext)
         {
             Context = dbContext;
             Entities = dbContext.Set<TEntity>();
@@ -145,7 +145,7 @@ namespace BookStore.DAL
         /// </summary>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public int Count(Expression<Func<TEntity, bool>> filter = null)
+        public long Count(Expression<Func<TEntity, bool>> filter = null)
         {
             IQueryable<TEntity> query = Entities;
 

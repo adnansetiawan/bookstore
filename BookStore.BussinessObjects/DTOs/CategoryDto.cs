@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.BussinessObjects.DTO.Input
+namespace BookStore.Entities.DTOs
 {
     public class CategoryDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
     }
 }

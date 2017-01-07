@@ -1,11 +1,11 @@
-﻿using BookStore.Core.Utils;
+﻿using BookStore.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Exceptions
+namespace BookStore.Common.Exceptions
 {
     public class BLLException : ExceptionBase
     {

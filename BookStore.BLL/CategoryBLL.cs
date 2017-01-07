@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookStore.BussinessObjects.DAO;
+using BookStore.Entities.Databases;
+using BookStore.Entities.DTOs;
 using BookStore.Contracts.DAL;
-using DtoOutput = BookStore.BussinessObjects.DTO.Output;
-using DtoInput = BookStore.BussinessObjects.DTO.Input;
 using AutoMapper;
-using BookStore.BLL.Validator;
+using BookStore.Entities.Outputs.Category;
+using BookStore.Entities.Inputs.Category;
+using BookStore.Common.Exceptions;
 
 namespace BookStore.BLL
 {
@@ -24,18 +25,41 @@ namespace BookStore.BLL
         }
 
         
-        public List<DtoOutput.CategoryDto> GetAll()
+        public GetAllCategoryOutput GetAll()
         {
-            var categories = _categoryRepo.Get();
-            var categoriesDto = Mapper.Map<List<DtoOutput.CategoryDto>>(categories);
-            return categoriesDto;
+            var categoryOutput = new GetAllCategoryOutput();
+            var categoriesDto = new List<CategoryDto>();
+            try
+            {
+                var categories = _categoryRepo.Get();
+                categoriesDto = Mapper.Map<List<CategoryDto>>(categories);
+
+            }
+            catch (BLLException ex)
+            {
+                categoryOutput.Success = false;
+                categoryOutput.Messages = ex.Message;
+            }
+            return new GetAllCategoryOutput
+            {
+                Categories = categoriesDto
+            };
+
         }
 
-        public void AddNewCategory(DtoInput.CategoryDto NewCategory)
+        public void AddNewCategory(CreateNewCategoryInput newCategoryInput)
         {
-            var newCategory = Mapper.Map<Category>(NewCategory);
-            _categoryRepo.Insert(newCategory);
-            _unitOfWork.SaveChanges();
+            var newCategory = Mapper.Map<Category>(newCategoryInput);
+            try
+            {
+                _categoryRepo.Insert(newCategory);
+                
+            }
+            catch (BLLException ex)
+            {
+                throw new BLLException(ExceptionCodes.BLLExceptions.UnhandledError, ex.Message);
+            }
+           
         }
     }
 }

@@ -215,8 +215,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\DtoToModelMapper.cs" />
-    <Compile Include="Mapping\ModelToDtoMapper.cs" />
+    <Compile Include="Mapper\DtoToModelMapper.cs" />
+    <Compile Include="Mapper\ModelToDtoMapper.cs" />
     <Compile Include="Models\Request\Category\Create\CreateCategoryRequest.cs" />
     <Compile Include="Models\Response\BaseMessageResponse.cs" />
     <Compile Include="Models\Response\BaseResponseObjectModel.cs" />
@@ -283,17 +283,17 @@
       <Project>{bb6d106c-8d55-4160-a561-692ef28197d2}</Project>
       <Name>BookStore.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.BussinessObjects.csproj">
+    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.Entities.csproj">
       <Project>{0fd5d93d-b884-44ed-add6-ce21e004f8e7}</Project>
-      <Name>BookStore.BussinessObjects</Name>
+      <Name>BookStore.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookStore.Contracts\BookStore.Contracts.csproj">
       <Project>{af3ab0c6-f634-4ab4-a9a0-96fe3fa588cf}</Project>
       <Name>BookStore.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj">
+    <ProjectReference Include="..\BookStore.Core\BookStore.Common.csproj">
       <Project>{bc73987e-cb0f-4f60-80c2-fd369e3ea074}</Project>
-      <Name>BookStore.Core</Name>
+      <Name>BookStore.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookStore.DAL\BookStore.DAL.csproj">
       <Project>{1AAAA3C7-12FF-41C5-99C0-88633D3CA77E}</Project>

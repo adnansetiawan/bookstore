@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.DAL", "BookStore.DAL\BookStore.DAL.csproj", "{1AAAA3C7-12FF-41C5-99C0-88633D3CA77E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.BussinessObjects", "BookStore.BussinessObjects\BookStore.BussinessObjects.csproj", "{0FD5D93D-B884-44ED-ADD6-CE21E004F8E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Entities", "BookStore.BussinessObjects\BookStore.Entities.csproj", "{0FD5D93D-B884-44ED-ADD6-CE21E004F8E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Contracts", "BookStore.Contracts\BookStore.Contracts.csproj", "{AF3AB0C6-F634-4AB4-A9A0-96FE3FA588CF}"
 EndProject
@@ -15,9 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.BLL", "BookStore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.BLL.Test", "BookStore.BLL.Test\BookStore.BLL.Test.csproj", "{A13CF094-D6EB-485F-9DD0-32CC1D220A87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Core", "BookStore.Core\BookStore.Core.csproj", "{BC73987E-CB0F-4F60-80C2-FD369E3EA074}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Common", "BookStore.Core\BookStore.Common.csproj", "{BC73987E-CB0F-4F60-80C2-FD369E3EA074}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.WebApi", "BookStore.WebApi\BookStore.WebApi.csproj", "{CC43920E-38E8-4FDE-B4BF-E132FEF2DDE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3B913871-CC8C-4F4D-88B7-579B55EDCCCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,5 +62,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20D183E7-BD3E-43F1-B926-C428ABF16256} = {3B913871-CC8C-4F4D-88B7-579B55EDCCCD}
+		{A13CF094-D6EB-485F-9DD0-32CC1D220A87} = {3B913871-CC8C-4F4D-88B7-579B55EDCCCD}
 	EndGlobalSection
 EndGlobal

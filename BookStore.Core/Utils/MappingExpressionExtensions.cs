@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Utils
+namespace BookStore.Common.Utils
 {
     public static class MappingExpressionExtensions
     {

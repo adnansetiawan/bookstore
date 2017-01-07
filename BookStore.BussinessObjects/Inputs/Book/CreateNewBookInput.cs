@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.BussinessObjects.DTO.Output
+namespace BookStore.Entities.Inputs.Book
 {
-    public class BookDto
+    public class CreateNewBookInput
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public CategoryDto Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }
