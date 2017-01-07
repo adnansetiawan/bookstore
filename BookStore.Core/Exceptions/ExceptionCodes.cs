@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Exceptions
+namespace BookStore.Common.Exceptions
 {
     public class ExceptionCodes
     {
@@ -20,6 +20,8 @@ namespace BookStore.Core.Exceptions
 
         public enum BLLExceptions
         {
+            [Description("An unhandled error occured")]
+            UnhandledError = 0,
             [Description("Title Is Null Or Empty")]
             TitleIsNullOrEmpty = 100,
             [Description("Category Not Found")]

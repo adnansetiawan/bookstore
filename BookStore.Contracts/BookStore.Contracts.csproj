@@ -54,16 +54,15 @@
     <Compile Include="DAL\IGenericRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.BussinessObjects.csproj">
+    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.Entities.csproj">
       <Project>{0FD5D93D-B884-44ED-ADD6-CE21E004F8E7}</Project>
-      <Name>BookStore.BussinessObjects</Name>
+      <Name>BookStore.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

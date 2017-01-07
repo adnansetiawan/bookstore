@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Contracts.Services
+namespace BookStore.Entities.Inputs.Category
 {
-    public interface IValidator<T> where T : class
+    public class CreateNewCategoryInput
     {
-        void Validate(T model);
+       public string Name { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using BookStore.Contracts.BLL;
+using BookStore.Contracts.DAL;
+using BookStore.Entities.Inputs.Category;
 using BookStore.WebApi.Models.Request.Category;
 using BookStore.WebApi.Models.Request.Category.Create;
 using BookStore.WebApi.Models.Response.Category;
@@ -11,27 +13,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DtoInput = BookStore.BussinessObjects.DTO.Input;
 namespace BookStore.WebApi.Controllers
 {
     [RoutePrefix("api/Category")]
     public class CategoryController : ApiController
     {
         private ICategoryBLL _categoryBLL;
-
-        public CategoryController(ICategoryBLL categoryBLL)
+        private IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork, ICategoryBLL categoryBLL)
         {
+            _unitOfWork = unitOfWork;
             _categoryBLL = categoryBLL;
         }
         public IHttpActionResult GetAllCategory()
         {
             var dtoOutput = _categoryBLL.GetAll();
-            var categoryModel = Mapper.Map<List<CategoryResponse>>(dtoOutput);
-            var response = new GetAllCategoryResponse
-            {
-                Data = categoryModel
-
-            };
+            var response = AutoMapper.Mapper.Map<GetAllCategoryResponse>(dtoOutput);
             return Ok(response);
         }
 
@@ -40,8 +37,9 @@ namespace BookStore.WebApi.Controllers
         public IHttpActionResult AddCategory(CreateCategoryRequest request)
         {
 
-            var dtoInput = Mapper.Map<DtoInput.CategoryDto>(request);
+            var dtoInput = AutoMapper.Mapper.Map<CreateNewCategoryInput>(request);
             _categoryBLL.AddNewCategory(dtoInput);
+            _unitOfWork.SaveChanges();
             var response = new AddCategoryResponse();           
             return Ok(response);
         }

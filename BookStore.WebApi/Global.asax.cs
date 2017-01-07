@@ -14,7 +14,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using DtoInput = BookStore.BussinessObjects.DTO.Input;
 namespace BookStore.WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -27,12 +26,11 @@ namespace BookStore.WebApi
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SimpleInjectorResolver();
-            Mapper.Initialize(cfg => {
-                cfg.AddProfile(new BLL.Mapping.DaoToDtoMapper());
-                cfg.AddProfile(new BLL.Mapping.DtoToDaoMapper());
-                cfg.AddProfile(new BLL.Mapping.DaoToDtoMapper());
-                cfg.AddProfile(new Mapping.DtoToModelMapper());
-                cfg.AddProfile(new Mapping.ModelToDtoMapper());
+            AutoMapper.Mapper.Initialize(cfg => {
+                cfg.AddProfile(new BLL.Mapping.DbEntityToDtoMapper());
+                cfg.AddProfile(new BLL.Mapping.DtoToDbEntityMapper());
+                cfg.AddProfile(new Mapper.DtoToModelMapper());
+                cfg.AddProfile(new Mapper.ModelToDtoMapper());
             });
         }
 
@@ -43,7 +41,7 @@ namespace BookStore.WebApi
             container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle();
 
             // Register your types, for instance using the scoped lifestyle:
-            container.Register<IUnitOfWork, SqlUnitOfWork>(Lifestyle.Scoped);
+            container.Register<IUnitOfWork, EFUnitOfWork>(Lifestyle.Scoped);
 
             container.Register<ICategoryBLL, CategoryBLL>();
 

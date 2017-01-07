@@ -1,15 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookStore.Contracts.DAL;
-using BookStore.BussinessObjects.DAO;
-using DtoOutput = BookStore.BussinessObjects.DTO.Output;
+using BookStore.Application.Entities;
+using DtoOutput = BookStore.Application.Outputs.Book;
 using DtoInput = BookStore.BussinessObjects.DTO.Input;
 using NSubstitute;
 using System.Collections.Generic;
 using System.Linq;
 using BookStore.Core.Exceptions;
+using BookStore.BLL;
 
-namespace BookStore.BLL.Test
+namespace BookStore.Test.BLL.Test
 {
     [TestClass]
     public class BookBLLTest

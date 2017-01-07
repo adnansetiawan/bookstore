@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Exceptions
+namespace BookStore.Common.Exceptions
 {
     public class ExceptionBase : Exception
     {

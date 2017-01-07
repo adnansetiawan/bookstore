@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.DAL
 {
-    public class SqlUnitOfWork : IUnitOfWork
+    public class EFUnitOfWork : IUnitOfWork
     {
         private BookStoreEntities _context = new BookStoreEntities();
         private bool _disposed;
@@ -22,7 +22,7 @@ namespace BookStore.DAL
         /// <returns></returns>
         public IGenericRepository<T> GetGenericRepository<T>() where T : class
         {
-            return new SqlGenericRepository<T>(_context);
+            return new EFGenericRepository<T>(_context);
         }
 
         

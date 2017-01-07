@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using BookStore.Contracts.DAL;
+using BookStore.DAL;
 
-namespace BookStore.DAL.Test
+namespace BookStore.Tests.DAL.Test
 {
     [TestClass]
     public class SqlGenericeRepositoryTest

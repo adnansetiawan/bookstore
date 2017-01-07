@@ -1,25 +1,25 @@
 ﻿using AutoMapper;
-using BookStore.BussinessObjects.DAO;
-using BookStore.BussinessObjects.DTO;
+using BookStore.Entities.Databases;
+using BookStore.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DtoInput = BookStore.BussinessObjects.DTO.Input;
-using BookStore.Core.Utils;
+using BookStore.Common.Utils;
 namespace BookStore.BLL.Mapping
 {
-    public class DtoToDaoMapper : Profile
-    {
+    public class DbEntityToDtoMapper : Profile
 
-        public DtoToDaoMapper()
+    {
+        public DbEntityToDtoMapper()
         {
-            CreateMap<DtoInput.CategoryDto, Category>()
+            CreateMap<Category, CategoryDto>()
                      .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
                      .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name));
-
+            CreateMap<Book, BookDto>();
         }
+
         
     }
 }

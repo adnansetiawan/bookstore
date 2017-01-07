@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Core.Utils
+namespace BookStore.Common.Utils
 {
     public static class EnumHelper
     {

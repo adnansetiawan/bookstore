@@ -1,5 +1,5 @@
-﻿using BookStore.BussinessObjects.DAO;
-using BookStore.Contracts;
+﻿using BookStore.Contracts;
+using BookStore.Entities.Databases;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
