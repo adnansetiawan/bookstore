@@ -11,7 +11,7 @@ namespace BookStore.Entities.Mock
 {
     public class CategoryMock
     {
-        public static List<Category> GetAll()
+        public static List<Category> GetList()
         {
             var _fakeCategory = new List<Category>
              {

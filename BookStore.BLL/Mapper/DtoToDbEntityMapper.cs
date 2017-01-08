@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BookStore.Common.Utils;
 using BookStore.Entities.Databases;
 using BookStore.Entities.DTOs;
+using BookStore.Entities.Inputs.Book;
 
 namespace BookStore.BLL.Mapping
 {
@@ -18,8 +19,11 @@ namespace BookStore.BLL.Mapping
             CreateMap<CategoryDto, Category>()
                      .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
                      .ForMember(dest => dest.Name, opts => opts.MapFrom(src => src.Name));
+            CreateMap<CreateNewBookInput, Book>()
+                      .ForMember(dest => dest.Category, opts => opts.Ignore());
+
 
         }
-        
+
     }
 }
