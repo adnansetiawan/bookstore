@@ -1,5 +1,6 @@
 namespace BookStore.DAL.Migrations
 {
+    using Entities.Databases;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,18 +15,13 @@ namespace BookStore.DAL.Migrations
 
         protected override void Seed(BookStore.DAL.BookStoreEntities context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Categories.AddOrUpdate(
+                 c=>c.Id,
+                  new Category { Name = "Biography" },
+                  new Category { Name = "Programming"}
+                  
+                );
+            context.SaveChanges();
         }
     }
 }

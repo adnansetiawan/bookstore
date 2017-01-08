@@ -1,4 +1,5 @@
-﻿using BookStore.BussinessObjects.dto;
+﻿using BookStore.Entities.Outputs.Book;
+using BookStore.Entities.Inputs.Book;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BookStore.Contracts.BLL
 {
     public interface IBookBLL
     {
-        List<BookDto> GetAll();
+        GetAllBookOutput GetAll();
+        void AddNewBook(CreateNewBookInput newBookInput);
     }
 }

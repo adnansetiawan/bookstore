@@ -54,10 +54,18 @@
     <Compile Include="Migrations\201612060231315_CreateBookTable.Designer.cs">
       <DependentUpon>201612060231315_CreateBookTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612100258015_AddCategoryAndUpdateBook.cs" />
+    <Compile Include="Migrations\201612100258015_AddCategoryAndUpdateBook.Designer.cs">
+      <DependentUpon>201612100258015_AddCategoryAndUpdateBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612110742092_SeedCategoriData.cs" />
+    <Compile Include="Migrations\201612110742092_SeedCategoriData.Designer.cs">
+      <DependentUpon>201612110742092_SeedCategoriData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlGenericRepository.cs" />
-    <Compile Include="SqlUnitOfWork.cs" />
+    <Compile Include="EFGenericRepository.cs" />
+    <Compile Include="EFUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -66,9 +74,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.BussinessObjects.csproj">
+    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.Entities.csproj">
       <Project>{0FD5D93D-B884-44ED-ADD6-CE21E004F8E7}</Project>
-      <Name>BookStore.BussinessObjects</Name>
+      <Name>BookStore.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookStore.Contracts\BookStore.Contracts.csproj">
       <Project>{AF3AB0C6-F634-4AB4-A9A0-96FE3FA588CF}</Project>
@@ -78,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612060231315_CreateBookTable.resx">
       <DependentUpon>201612060231315_CreateBookTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612100258015_AddCategoryAndUpdateBook.resx">
+      <DependentUpon>201612100258015_AddCategoryAndUpdateBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612110742092_SeedCategoriData.resx">
+      <DependentUpon>201612110742092_SeedCategoriData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NSubstitute, Version=1.8.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <HintPath>..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
       <Private>True</Private>
@@ -58,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseBLLTest.cs" />
     <Compile Include="BookBLLTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,13 +71,29 @@
       <Project>{bb6d106c-8d55-4160-a561-692ef28197d2}</Project>
       <Name>BookStore.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.BussinessObjects.csproj">
+    <ProjectReference Include="..\BookStore.BussinessObjects\BookStore.Entities.csproj">
       <Project>{0fd5d93d-b884-44ed-add6-ce21e004f8e7}</Project>
-      <Name>BookStore.BussinessObjects</Name>
+      <Name>BookStore.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookStore.Contracts\BookStore.Contracts.csproj">
       <Project>{AF3AB0C6-F634-4AB4-A9A0-96FE3FA588CF}</Project>
       <Name>BookStore.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Core\BookStore.Common.csproj">
+      <Project>{bc73987e-cb0f-4f60-80c2-fd369e3ea074}</Project>
+      <Name>BookStore.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.DAL\BookStore.DAL.csproj">
+      <Project>{1aaaa3c7-12ff-41c5-99c0-88633d3ca77e}</Project>
+      <Name>BookStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Entities.Fake\BookStore.Entities.Mock.csproj">
+      <Project>{BC971451-8FCB-4E91-B149-5B35C964D623}</Project>
+      <Name>BookStore.Entities.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Repository.Fake\BookStore.Repository.Mock.csproj">
+      <Project>{C7C3047C-56F6-4CB7-9EE1-BDE55BF9E2B8}</Project>
+      <Name>BookStore.Repository.Mock</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
