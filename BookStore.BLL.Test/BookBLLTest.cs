@@ -64,6 +64,16 @@ namespace BookStore.BLL.Test
         }
 
         [TestMethod]
+        public void When_GetByTitle_ReturnValidData()
+        {
+            SetUpBookBLL();
+            var titleToFind = "Lord";
+            var actualResult = _bookBLL.GetByTitle(titleToFind);
+            Assert.AreNotEqual(0, actualResult.Books.Count);
+            Assert.IsTrue(actualResult.Books.First().Title.Contains(titleToFind));
+        }
+
+        [TestMethod]
         public void When_GetDetail_ReturnValidData()
         {
             var expectedId = 1;
