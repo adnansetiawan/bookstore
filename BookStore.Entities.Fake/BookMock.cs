@@ -12,15 +12,17 @@ namespace BookStore.Entities.Mock
 {
     public class BookMock
     {
-        public static List<Book> GetAll()
+        public static List<Book> GetList()
         {
             var _fakeBook = new List<Book>
              {
-                    new Book { Id = 1, Title = "Lord Of The Ring" },
-                    new Book { Id = 2, Title = "Game Of Throne" }
+                    new Book { Id = 1, Title = "Lord Of The Ring", Category = CategoryMock.GetValidSingle() },
+                    new Book { Id = 2, Title = "Game Of Throne",  Category = CategoryMock.GetValidSingle() }
              };
             return _fakeBook;
         }
+
+       
 
         public static CreateNewBookInput GetValidInputMock()
         {

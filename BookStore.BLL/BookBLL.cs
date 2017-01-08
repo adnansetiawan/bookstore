@@ -33,16 +33,14 @@ namespace BookStore.BLL
             {
                 var books = _bookRepo.Get();
                 booksDto = Mapper.Map<List<BookDto>>(books);
+                bookOutput.Books = booksDto;
             }
             catch(BLLException ex)
             {
                 bookOutput.Success = false;
                 bookOutput.Messages = ex.Message;
             }
-            return new GetAllBookOutput
-            {
-                Books = booksDto
-            };
+            return bookOutput;
         }
         public void AddNewBook(CreateNewBookInput newBookInput)
         {
@@ -62,6 +60,25 @@ namespace BookStore.BLL
                 throw new BLLException(ExceptionCodes.BLLExceptions.UnhandledError, ex.Message);
             }
            
+        }
+
+        public GetBookDetailOutput GetDetail(int Id)
+        {
+            var bookDetailOutput = new GetBookDetailOutput();
+            BookDto bookDto = null;
+            try
+            {
+                var bookDetail = _bookRepo.GetById(Id);
+                bookDto = AutoMapper.Mapper.Map<BookDto>(bookDetail);
+                bookDetailOutput.Book = bookDto;
+            }
+            catch (BLLException ex)
+            {
+                bookDetailOutput.Messages = ex.Message;
+                bookDetailOutput.Success = false;
+            }
+            return bookDetailOutput;
+            
         }
     }
 }

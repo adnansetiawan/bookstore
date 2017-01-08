@@ -11,6 +11,7 @@ namespace BookStore.Contracts.BLL
     public interface IBookBLL
     {
         GetAllBookOutput GetAll();
+        GetBookDetailOutput GetDetail(int Id);
         void AddNewBook(CreateNewBookInput newBookInput);
     }
 }
