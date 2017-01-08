@@ -80,5 +80,23 @@ namespace BookStore.BLL
             return bookDetailOutput;
             
         }
+
+        public GetAllBookOutput GetByTitle(string Title)
+        {
+            var bookOutput = new GetAllBookOutput();
+            var booksDto = new List<BookDto>();
+            try
+            {
+                var books = _bookRepo.Get(x=>x.Title.ToLower().Contains(Title.ToLower()));
+                booksDto = Mapper.Map<List<BookDto>>(books);
+                bookOutput.Books = booksDto;
+            }
+            catch (BLLException ex)
+            {
+                bookOutput.Success = false;
+                bookOutput.Messages = ex.Message;
+            }
+            return bookOutput;
+        }
     }
 }

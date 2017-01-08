@@ -12,6 +12,7 @@ namespace BookStore.Contracts.BLL
     {
         GetAllBookOutput GetAll();
         GetBookDetailOutput GetDetail(int Id);
+        GetAllBookOutput GetByTitle(string Title);
         void AddNewBook(CreateNewBookInput newBookInput);
     }
 }
