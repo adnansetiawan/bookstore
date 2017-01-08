@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,9 +41,9 @@ namespace BookStore.Repository.Mock
             _bookStoreEntities = Substitute.For<BookStoreEntities>();
             _bookStoreEntities.Set<T>().Returns(_mockDbSet);
             _repository = new EFGenericRepository<T>(_bookStoreEntities);
-
+           
         }
-
+        
         public EFGenericRepository<T> GetRepositoryMock()
         {
             return _repository;

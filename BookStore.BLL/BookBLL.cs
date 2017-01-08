@@ -25,8 +25,6 @@ namespace BookStore.BLL
             _bookRepo = _unitOfWork.GetGenericRepository<Book>();
             _categoryRepo = _unitOfWork.GetGenericRepository<Category>();
         }
-
-        
         public GetAllBookOutput GetAll()
         {
             var bookOutput = new GetAllBookOutput();
@@ -46,7 +44,6 @@ namespace BookStore.BLL
                 Books = booksDto
             };
         }
-
         public void AddNewBook(CreateNewBookInput newBookInput)
         {
 

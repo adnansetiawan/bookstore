@@ -1,4 +1,5 @@
 ﻿using BookStore.Entities.Databases;
+using BookStore.Entities.Inputs.Book;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,30 @@ namespace BookStore.Entities.Mock
              };
             return _fakeBook;
         }
-       
 
-       
+        public static CreateNewBookInput GetValidInputMock()
+        {
+            var newBookInput = new CreateNewBookInput()
+            {
+                CategoryId = 1,
+                Price = 5,
+                Description = "Book Description",
+                Title = "Clean Code"
+
+            };
+            return newBookInput;
+        }
+
+        public static CreateNewBookInput GetInputWithNotValidCategoryMock()
+        {
+            var newBookInput = new CreateNewBookInput()
+            {
+                CategoryId = 0,
+               
+            };
+            return newBookInput;
+        }
+
+
     }
 }

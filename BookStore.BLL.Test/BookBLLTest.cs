@@ -57,17 +57,12 @@ namespace BookStore.BLL.Test
        
         [TestMethod]
         [ExpectedException(typeof(BLLException))]
-        public void When_Insert_CategoryIsNotFound()
+        public void When_Insert_ReturnCategoryNotFound()
         {
             _categoryRepo.GetById(0).ReturnsForAnyArgs(CategoryMock.GetNull());
-
-            var newBook = new CreateNewBookInput()
-            {
-                CategoryId = 0
-            };
             try
             {
-                _bookBLL.AddNewBook(newBook);
+                _bookBLL.AddNewBook(BookMock.GetInputWithNotValidCategoryMock());
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -78,6 +73,13 @@ namespace BookStore.BLL.Test
             }
 
 
+        }
+
+        [TestMethod]
+        public void When_Insert_IsSucess()
+        {
+            _categoryRepo.GetById(Arg.Any<int>()).ReturnsForAnyArgs(CategoryMock.GetValidSingle());
+            _bookBLL.AddNewBook(BookMock.GetValidInputMock());          
         }
     }
 }
