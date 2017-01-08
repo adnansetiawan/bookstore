@@ -63,7 +63,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SqlGenericeRepositoryTest.cs" />
+    <Compile Include="EFGenericeRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +82,10 @@
     <ProjectReference Include="..\BookStore.DAL\BookStore.DAL.csproj">
       <Project>{1aaaa3c7-12ff-41c5-99c0-88633d3ca77e}</Project>
       <Name>BookStore.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Entities.Fake\BookStore.Entities.Mock.csproj">
+      <Project>{bc971451-8fcb-4e91-b149-5b35c964d623}</Project>
+      <Name>BookStore.Entities.Mock</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

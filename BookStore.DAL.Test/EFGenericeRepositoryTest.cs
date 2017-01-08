@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using BookStore.BussinessObjects.DAO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using BookStore.Contracts.DAL;
 using BookStore.DAL;
+using BookStore.Entities.Databases;
+using BookStore.Entities.Fake;
 
 namespace BookStore.Tests.DAL.Test
 {
@@ -14,58 +15,21 @@ namespace BookStore.Tests.DAL.Test
     public class SqlGenericeRepositoryTest
     {
         private BookStoreEntities _bookEntities;
-        private DbSet<Book> _mockSet;
-        private List<Book> _fakeBook;
         private IGenericRepository<Book> _repository;
-
         [TestInitialize]
         public void SetUp()
         {
             _bookEntities = Substitute.For<BookStoreEntities>();
-            _fakeBook = new List<Book>
-             {
-                    new Book { Id = 1, Title = "Lord Of The Ring" },
-                    new Book { Id = 2, Title = "Game Of Throne" }
-             };
-            var data = QuerableBook;
-            _mockSet = Substitute.For<DbSet<Book>, IQueryable<Book>>();
-            ((IQueryable<Book>)_mockSet).Provider.Returns(data.Provider);
-            ((IQueryable<Book>)_mockSet).Expression.Returns(data.Expression);
-            ((IQueryable<Book>)_mockSet).ElementType.Returns(data.ElementType);
-            ((IQueryable<Book>)_mockSet).GetEnumerator().Returns(data.GetEnumerator());
-            _bookEntities.Set<Book>().Returns(_mockSet);
-            _repository = new SqlGenericRepository<Book>(_bookEntities);
+            _bookEntities.Set<Book>().Returns(BookFake.GetBookDbSet());
+            _repository = new EFGenericRepository<Book>(_bookEntities);
             
         }
 
-        private List<Book> FakeBook
-        {
-            set { value = _fakeBook; }
-            get
-            {
-                return _fakeBook;
-            }
-            
-           
-
-            
-        }
-        private IQueryable<Book> QuerableBook
-        {
-            get
-            {
-                return FakeBook.AsQueryable();
-            }
-
-
-        }
-
+       
         [TestCleanup]
         public void CleanUp()
         {
             _bookEntities = null;
-            _fakeBook = null;
-            _mockSet = null;
             _repository = null;
 
         }
@@ -73,7 +37,9 @@ namespace BookStore.Tests.DAL.Test
         public void BookRepositoryGetTest()
         {
             var result = _repository.Get();
-            Assert.AreEqual(FakeBook.Count, result.Count());
+            var expectedResult = BookFake.GetAll().Count;
+            var actualResult = result.Count();
+            Assert.AreEqual(expectedResult, actualResult);
         }
         [TestMethod]
         public void BookRepositoryGeWithtExpressionTest()
