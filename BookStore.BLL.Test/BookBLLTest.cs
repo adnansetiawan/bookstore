@@ -64,6 +64,14 @@ namespace BookStore.BLL.Test
         }
 
         [TestMethod]
+        public void When_GetAll_OrderByTitle_ReturnValidData()
+        {
+            SetUpBookBLL();
+            var actualResult = _bookBLL.GetAll("Title");
+            Assert.IsTrue(actualResult.Books.First().Title.ToLower().StartsWith("game"));
+        }
+
+        [TestMethod]
         public void When_GetByTitle_ReturnValidData()
         {
             SetUpBookBLL();
