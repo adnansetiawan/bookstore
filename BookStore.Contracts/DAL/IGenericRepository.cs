@@ -15,6 +15,7 @@ namespace BookStore.Contracts.DAL
 
         TEntity GetById(params object[] keyValues);
 
+       
         void Insert(TEntity entity);
 
         void Update(TEntity entityToUpdate);

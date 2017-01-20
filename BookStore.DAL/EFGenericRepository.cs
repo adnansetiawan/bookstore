@@ -155,6 +155,8 @@ namespace BookStore.DAL
             }
             return query.Count();
         }
+
+        
     }
 
 }
