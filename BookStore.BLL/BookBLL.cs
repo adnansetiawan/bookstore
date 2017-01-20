@@ -25,25 +25,13 @@ namespace BookStore.BLL
             _bookRepo = _unitOfWork.GetGenericRepository<Book>();
             _categoryRepo = _unitOfWork.GetGenericRepository<Category>();
         }
-        public GetAllBookOutput GetAll(string OrderBy=null)
+        public GetAllBookOutput GetAll()
         {
             var bookOutput = new GetAllBookOutput();
             var booksDto = new List<BookDto>();
             try
             {
-                IEnumerable<Book> books = Enumerable.Empty<Book>();
-                if (OrderBy != null)
-                {
-                    switch (OrderBy.ToLower())
-                    {
-                        case "title": books = _bookRepo.Get(orderBy: x => x.OrderBy(y => y.Title)); break;
-                    }
-                }
-                else
-                {
-                    books = _bookRepo.Get();
-                }
-                
+                var books = _bookRepo.Get();
                 booksDto = Mapper.Map<List<BookDto>>(books);
                 bookOutput.Books = booksDto;
             }

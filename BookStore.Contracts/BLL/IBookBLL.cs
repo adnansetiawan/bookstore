@@ -10,7 +10,7 @@ namespace BookStore.Contracts.BLL
 {
     public interface IBookBLL
     {
-        GetAllBookOutput GetAll(string OrderBy=null);
+        GetAllBookOutput GetAll();
         GetBookDetailOutput GetDetail(int Id);
         GetAllBookOutput GetByTitle(string Title);
         void AddNewBook(CreateNewBookInput newBookInput);
