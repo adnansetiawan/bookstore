@@ -35,13 +35,13 @@ namespace BookStoreRepository.Test
             _bookRepository = null;
         }
         [TestMethod]
-        public void GetAll()
+        public void When_No_Criteria_Return_All()
         {
             var books = _bookRepository.Get().ToList();
             Assert.AreNotEqual(0, books.Count);
         }
         [TestMethod]
-        public void FindByName()
+        public void GetBookWithSpesificTitle()
         {
             var firstBook = BookMock.GetList().First();
             var books = _bookRepository.Get(x => x.Title.Contains(firstBook.Title)).ToList();

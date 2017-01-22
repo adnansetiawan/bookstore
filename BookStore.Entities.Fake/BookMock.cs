@@ -16,9 +16,11 @@ namespace BookStore.Entities.Mock
         {
             var _fakeBook = new List<Book>
              {
-                    new Book { Id = 1, Title = "Lord Of The Ring", Category = CategoryMock.GetValidSingle() },
-                    new Book { Id = 2, Title = "Game Of Throne",  Category = CategoryMock.GetValidSingle() }
-             };
+                    new Book { Id = 1, Title = "Clean Code", Category = CategoryMock.GetValidSingle() },
+                    new Book { Id = 2, Title = "ASP.Net MVC in Action",  Category = CategoryMock.GetValidSingle() },
+                    new Book { Id = 3, Title = "C# in Nutshell", Category = CategoryMock.GetValidSingle() }
+          
+            };
             return _fakeBook;
         }
 

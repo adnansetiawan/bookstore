@@ -16,15 +16,16 @@ using BookStore.Entities.Inputs.Book;
 namespace BookStore.BLL.Test
 {
     [TestClass]
-    public class BookBLLTest : BaseBLLTest
+     public class BookBLLTest : BaseBLLTest
     {
         private IUnitOfWork _unitOfWork;
         private IGenericRepository<Book> _bookRepo;
         private IGenericRepository<Category> _categoryRepo;
         private BookBLL _bookBLL;
         [TestInitialize]
-        public void Setup()
+        public override void Setup()
         {
+            base.Setup();
             _unitOfWork = Substitute.For<IUnitOfWork>();
             _bookRepo = Substitute.For<IGenericRepository<Book>>();
             _unitOfWork.GetGenericRepository<Book>().ReturnsForAnyArgs(_bookRepo);
@@ -41,20 +42,24 @@ namespace BookStore.BLL.Test
             _bookRepo = null;
             _categoryRepo = null;
             _bookBLL = null;
-          
+
         }
        
        
-
         [TestMethod]
-        public void When_GetAll_ReturnValidData()
+        [TestCategory("BookBLL")]
+        public void When_GetAll_Then_All()
         {
-           
+           //arrange
             var expectedResult = BookMock.GetList();
             _bookRepo.Get().Returns(expectedResult);
+
+            //act
             var actualResult = _bookBLL.GetAll();
-            Assert.AreNotEqual(0, actualResult.Books.Count);
+          
+            //assert
             Assert.AreEqual(expectedResult.Count, actualResult.Books.Count);
+            Assert.AreEqual(expectedResult.First().Title, actualResult.Books.First().Title);
         }
 
        
