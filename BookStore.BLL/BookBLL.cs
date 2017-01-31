@@ -54,6 +54,7 @@ namespace BookStore.BLL
                 newBook.Category = category;
                 _bookRepo.Insert(newBook);
                 
+                
             }
             catch (BLLException ex)
             {

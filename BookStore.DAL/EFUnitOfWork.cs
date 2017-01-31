@@ -12,7 +12,10 @@ namespace BookStore.DAL
     {
         private BookStoreEntities _context;
         private bool _disposed;
-
+        public EFUnitOfWork()
+        {
+            _context = new BookStoreEntities();
+        }
         public EFUnitOfWork(BookStoreEntities context)
         {
             _context = context;

@@ -40,6 +40,32 @@ namespace BookStoreRepository.Test
             var books = _bookRepository.Get().ToList();
             Assert.AreNotEqual(0, books.Count);
         }
+
+        [TestMethod]
+        public void When_FindByTitle_Then_Return_ValidData()
+        {
+            var firstBook = BookMock.GetList().First();
+            var books = _bookRepository.Get(x => x.Title.ToLower().Contains(firstBook.Title.ToLower())).ToList();
+            Assert.AreEqual(firstBook.Title, books.First().Title);
+        }
+
+        [TestMethod]
+        public void When_AddNewBook_Then_Data_Is_Added()
+        {
+            //arrange
+            var category = context.Categories.First();
+            var newBook = BookMock.GetValidBook(category);
+            var booksCountBeforeAdd = context.Books.Count();
+
+            //act
+            _bookRepository.Insert(newBook);
+            unitOfWork.SaveChanges();
+
+            //assert
+            var booksCountAfterAdd = context.Books.Count();
+            Assert.AreEqual(booksCountBeforeAdd + 1, booksCountAfterAdd);
+        }
+
         [TestMethod]
         public void GetBookWithSpesificTitle()
         {

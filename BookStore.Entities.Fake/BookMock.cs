@@ -24,7 +24,16 @@ namespace BookStore.Entities.Mock
             return _fakeBook;
         }
 
-       
+        public static Book GetValidBook(Category category)
+        {
+            return new Book
+            {
+                 Title = "Asp.Net Core",
+                 Price = 20,
+                 Category = category
+                 
+            };
+        }
 
         public static CreateNewBookInput GetValidInputMock()
         {

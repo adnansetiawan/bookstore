@@ -41,9 +41,10 @@ namespace BookStore.WebApi
             container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle();
 
             // Register your types, for instance using the scoped lifestyle:
-            container.Register<IUnitOfWork, EFUnitOfWork>(Lifestyle.Scoped);
+            container.Register<IUnitOfWork>(()=>new EFUnitOfWork());
 
             container.Register<ICategoryBLL, CategoryBLL>();
+            container.Register<IBookBLL, BookBLL>();
 
             // This is an extension method from the integration package.
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);

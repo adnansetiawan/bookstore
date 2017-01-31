@@ -11,7 +11,7 @@ using BookStore.Entities.Databases;
 using BookStore.Repository.Mock;
 using BookStore.Entities.Mock;
 using BookStore.Entities.Inputs.Book;
-
+using System.Linq.Expressions;
 
 namespace BookStore.BLL.Test
 {
@@ -47,7 +47,6 @@ namespace BookStore.BLL.Test
        
        
         [TestMethod]
-        [TestCategory("BookBLL")]
         public void When_GetAll_Then_All()
         {
            //arrange
@@ -62,7 +61,53 @@ namespace BookStore.BLL.Test
             Assert.AreEqual(expectedResult.First().Title, actualResult.Books.First().Title);
         }
 
-       
+        [TestMethod]
+        [TestCategory("BookBLL")]
+        public void When_FindByTitle_Then_ReturnValidData()
+        {
+            //arrange
+            var matchBook = BookMock.GetList().First();
+            var matchBooks = new List<Book>
+            {
+                matchBook
+            };
+            _bookRepo.Get(Arg.Any<Expression<Func<Book, bool>>>()).Returns(matchBooks);
+
+            //act
+            var actualResult = _bookBLL.GetByTitle(matchBook.Title);
+            
+            //assert
+            Assert.AreEqual(matchBook.Title, actualResult.Books.First().Title);
+        }
+
+
+        [TestMethod]
+        public void When_AddNewBook_Success()
+        {
+            //arrange
+            var newBook = new CreateNewBookInput
+            {
+                 Title = "Asp.Net Core",
+                 Price = 20,
+                 CategoryId = 1
+
+            };
+            _categoryRepo.GetById(newBook.CategoryId).Returns(CategoryMock.GetValidSingle());
+            try
+            {
+                //act
+                _bookBLL.AddNewBook(newBook);
+                _bookRepo.Received().Insert(Arg.Any<Book>());
+
+            }
+            catch
+            {
+                //assert
+                Assert.Fail();
+            }
+              
+         }
+
 
         [TestMethod]
         public void When_GetDetail_ReturnValidData()
@@ -73,9 +118,12 @@ namespace BookStore.BLL.Test
             Assert.AreEqual(firstBook.Id, actualResult.Book.Id);
         }
 
+
+
+
         [TestMethod]
         [ExpectedException(typeof(BLLException))]
-        public void When_Insert_ReturnCategoryNotFound()
+        public void When_AddNewBook_NotValidCategory_Then_ReturnException()
         {
             var categoryNull = CategoryMock.GetNull();
             _categoryRepo.GetById(0).Returns(categoryNull);
@@ -91,9 +139,10 @@ namespace BookStore.BLL.Test
                 throw ex;
             }
 
-
         }
 
-        
+       
+
+
     }
 }
