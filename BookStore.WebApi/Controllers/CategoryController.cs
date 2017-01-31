@@ -19,10 +19,8 @@ namespace BookStore.WebApi.Controllers
     public class CategoryController : ApiController
     {
         private ICategoryBLL _categoryBLL;
-        private IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork unitOfWork, ICategoryBLL categoryBLL)
+        public CategoryController(ICategoryBLL categoryBLL)
         {
-            _unitOfWork = unitOfWork;
             _categoryBLL = categoryBLL;
         }
         public IHttpActionResult GetAllCategory()
@@ -36,12 +34,20 @@ namespace BookStore.WebApi.Controllers
         [Route("Create")]
         public IHttpActionResult AddCategory(CreateCategoryRequest request)
         {
-
+            var response = new CreateCategoryResponse();
             var dtoInput = AutoMapper.Mapper.Map<CreateNewCategoryInput>(request);
-            _categoryBLL.AddNewCategory(dtoInput);
-            _unitOfWork.SaveChanges();
-            var response = new AddCategoryResponse();           
-            return Ok(response);
+            try
+            {
+                _categoryBLL.AddNewCategory(dtoInput);
+                
+               
+            }
+            catch (Exception ex)
+            {
+                response.Messages = ex.Message;
+                response.Success = false;
+            }
+             return Ok(response);
         }
     }
         

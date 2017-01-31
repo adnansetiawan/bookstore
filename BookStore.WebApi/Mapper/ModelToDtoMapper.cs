@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BookStore.Entities.Inputs.Book;
 using BookStore.Entities.Inputs.Category;
+using BookStore.WebApi.Models.Request.Book.Create;
 using BookStore.WebApi.Models.Request.Category.Create;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace BookStore.WebApi.Mapper
     {
         public ModelToDtoMapper()
         {
+            CreateMap<CreateBookRequest, CreateNewBookInput>();
             CreateMap<CreateCategoryRequest, CreateNewCategoryInput>();
         }
     }

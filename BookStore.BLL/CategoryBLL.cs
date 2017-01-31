@@ -53,6 +53,7 @@ namespace BookStore.BLL
             try
             {
                 _categoryRepo.Insert(newCategory);
+                _unitOfWork.SaveChanges();
                 
             }
             catch (BLLException ex)
