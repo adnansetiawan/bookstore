@@ -1,7 +1,7 @@
 ﻿using BookStore.MVC.Models.ApiResponse.Book;
 using BookStore.MVC.Models.ViewModel.Book;
-using BookStore.MVC.Models.ViewModel.Book.GetAll;
 using BookStore.MVC.Models.ViewModel.Category;
+using BookStore.MVC.Services.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,33 +13,68 @@ namespace BookStore.MVC.Controllers
 {
     public class BookController : BaseController
     {
-        private const string GET_ALL_BOOK_URL = "api/Book/GetAll";
+        private IBookService _bookService;
+        private ICategoryService _categoryService;
+        public BookController(IBookService bookService, ICategoryService categoryService)
+        {
+            _bookService = bookService;
+            _categoryService = categoryService;
+        }
         // GET: Book
         public ActionResult Index()
         {
-            HttpResponseMessage responseMessage = httpClient.GetAsync(GET_ALL_BOOK_URL).Result;
-            var response = responseMessage.Content.ReadAsAsync<GetAllBookResponse>().Result;
             var model = new BookGetAllViewModel();
-            if (response.Success)
+            var getAllBookResponse = _bookService.GetAllBook();
+            if (getAllBookResponse.Success)
             {
-                foreach (var book in response.Data)
+                foreach (var book in getAllBookResponse.Data)
                 {
                     model.Books.Add(new BookViewModel
                     {
-                         Id = book.Id,
-                         Title = book.Title,
-                         Description = book.Description,
-                         Price = book.Price,
-                         Category = new CategoryViewModel
-                         {
-                              Id = book.Category.Id,
-                              Name = book.Category.Name
-                         }
-                        
+                        Id = book.Id,
+                        Title = book.Title,
+                        Description = book.Description,
+                        Price = book.Price,
+                        Category = new CategoryViewModel
+                        {
+                            Id = book.Category.Id,
+                            Name = book.Category.Name
+                        }
+
                     });
                 }
             }
-            return View(model);
+            return View("Index", model);
         }
+
+        public ActionResult Create()
+        {
+            var model = new FormBookViewModel();
+            var categoryResponse = _categoryService.GetAllCategory();
+            if (categoryResponse.Success)
+            {
+                model.CategorySelectList = new SelectList(categoryResponse.Data, "Id", "Name");
+            }
+
+            return View("Create", model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(FormBookViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            var newBookRequest = new BookRequest
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Price = model.Price,
+                CategoryId = model.CategoryId
+            };
+            _bookService.CreateNewBook(newBookRequest);
+            return RedirectToAction("Index");
+        }
+
+        
     }
 }
