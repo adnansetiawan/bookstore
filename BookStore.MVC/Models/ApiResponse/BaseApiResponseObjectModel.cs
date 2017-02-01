@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookStore.MVC.Models.ApiResponse
 {
-    public class BaseApiResponseObjectModel<T> : BaseApiResponse
+    public abstract class BaseApiResponseObjectModel<T> : BaseApiResponse
     {
         public T Data { get; set; }
     }

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookStore.WebApi.Models.Response
 {
-    public class BaseMessageResponse
+    public abstract class BaseMessageResponse
     {
         public bool Success { get; set; }
         public string Messages { get; set; }
