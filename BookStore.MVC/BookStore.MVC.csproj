@@ -161,6 +161,7 @@
     <Compile Include="Models\ApiResponse\BaseApiResponseObjectModel.cs" />
     <Compile Include="Models\ApiResponse\Book\BookResponse.cs" />
     <Compile Include="Models\ApiResponse\Book\GetAllBookResponse.cs" />
+    <Compile Include="Models\ApiResponse\Category\CategoryResponse.cs" />
     <Compile Include="Models\ViewModel\Book\BookViewModel.cs" />
     <Compile Include="Models\ViewModel\Book\GetAll\BookGetAllViewModel.cs" />
     <Compile Include="Models\ViewModel\Category\CategoryViewModel.cs" />

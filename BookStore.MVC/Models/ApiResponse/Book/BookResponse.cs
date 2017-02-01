@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.MVC.Models.ApiResponse.Category;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,5 +12,6 @@ namespace BookStore.MVC.Models.ApiResponse.Book
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public CategoryResponse Category { get; set; }
     }
 }

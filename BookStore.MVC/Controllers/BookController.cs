@@ -1,6 +1,7 @@
 ﻿using BookStore.MVC.Models.ApiResponse.Book;
 using BookStore.MVC.Models.ViewModel.Book;
 using BookStore.MVC.Models.ViewModel.Book.GetAll;
+using BookStore.MVC.Models.ViewModel.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,12 @@ namespace BookStore.MVC.Controllers
                          Id = book.Id,
                          Title = book.Title,
                          Description = book.Description,
-                         Price = book.Price
+                         Price = book.Price,
+                         Category = new CategoryViewModel
+                         {
+                              Id = book.Category.Id,
+                              Name = book.Category.Name
+                         }
                         
                     });
                 }
