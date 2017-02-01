@@ -1,0 +1,26 @@
+﻿@model BookStore.MVC.Models.ViewModel.Book.GetAll.BookGetAllViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Book List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var book in Model.Books)
+       {
+           <tr>
+               <td>@book.Title</td>
+               <td>@book.Description</td>
+               <td>@book.Price</td>
+           </tr>
+       }
+    </tbody>
+</table>
