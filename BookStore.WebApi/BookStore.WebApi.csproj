@@ -351,6 +351,10 @@
       <Project>{1AAAA3C7-12FF-41C5-99C0-88633D3CA77E}</Project>
       <Name>BookStore.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookStore.Services\BookStore.Services.csproj">
+      <Project>{a96489c9-2062-4839-a49f-a54d07354ec5}</Project>
+      <Name>BookStore.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

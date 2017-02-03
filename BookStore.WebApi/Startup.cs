@@ -4,6 +4,7 @@ using BookStore.Contracts.BLL;
 using BookStore.Contracts.DAL;
 using BookStore.DAL;
 using BookStore.Entities.Indentity;
+using BookStore.Services.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -34,7 +35,14 @@ namespace BookStore.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            SimpleInjectorResolver(app);
+            var container = SimpleInjectorResolver(app);
+            ConfigureOAuth(app, container);
+            HttpConfiguration config = new HttpConfiguration();
+            //add this, if not you IOC not work
+            config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+            WebApiConfig.Register(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseWebApi(config);
             AutoMapper.Mapper.Initialize(cfg => {
                 cfg.AddProfile(new BLL.Mapping.DbEntityToDtoMapper());
                 cfg.AddProfile(new BLL.Mapping.DtoToDbEntityMapper());
@@ -42,12 +50,9 @@ namespace BookStore.WebApi
                 cfg.AddProfile(new Mapper.ModelToDtoMapper());
             });
            
-
-
-
         }
 
-        private void SimpleInjectorResolver(IAppBuilder app)
+        private Container SimpleInjectorResolver(IAppBuilder app)
         {
            
             // Create the container as usual.
@@ -69,23 +74,12 @@ namespace BookStore.WebApi
             container.Verify();
              GlobalConfiguration.Configuration.DependencyResolver =
                 new SimpleInjectorWebApiDependencyResolver(container);
+            return container;
             
-            var userManager = container.GetInstance<IApplicationUserManager>();
-            ConfigureOAuth(app, userManager);
-
-            HttpConfiguration config = new HttpConfiguration();
-
-            //add this, if not you IOC not work
-            config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
-            WebApiConfig.Register(config);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
-            app.UseWebApi(config);
-            
-
         }
-        private void ConfigureOAuth(IAppBuilder app, IApplicationUserManager userManager)
+        private void ConfigureOAuth(IAppBuilder app, Container container)
         {
+            var userManager = container.GetInstance<IApplicationUserManager>();
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,

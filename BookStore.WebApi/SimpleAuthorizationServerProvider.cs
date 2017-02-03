@@ -19,7 +19,7 @@ namespace BookStore.WebApi
         }
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            context.Validated();
+           await Task.Factory.StartNew(()=>  context.Validated());
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -28,7 +28,7 @@ namespace BookStore.WebApi
             
             IdentityUser user = await _userManager.FindUser(context.UserName, context.Password);
             if (user == null)
-           {
+            {
              context.SetError("invalid_grant", "The user name or password is incorrect.");
              return;
             }

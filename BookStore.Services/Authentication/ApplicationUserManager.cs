@@ -12,7 +12,7 @@ using BookStore.Entities.Inputs.User;
 using Microsoft.Owin;
 using BookStore.DAL;
 
-namespace BookStore.BLL
+namespace BookStore.Services.Authentication
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>, IApplicationUserManager
     {
@@ -29,13 +29,7 @@ namespace BookStore.BLL
             }
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
-        {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationEntities>()), options);
-            return manager;
-        }
-
-
+       
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
             IdentityUser user =  await base.FindAsync(userName, password);
