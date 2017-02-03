@@ -63,9 +63,8 @@ namespace BookStore.MVC.Test
 
             //act
             var result = _bookController.Index() as ViewResult;
-            var resultModel = result.Model as BookGetAllViewModel;
-
             //assert
+            var resultModel = result.Model as BookGetAllViewModel;
             Assert.AreEqual(resultModel.Books.Count, getAllBookResponse.Data.Count);
 
 

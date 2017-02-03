@@ -21,6 +21,7 @@ namespace BookStore.WebApi.Controllers
         {
             _bookBLL = bookBLL;
         }
+        [Authorize]
         public IHttpActionResult GetAllBook()
         {
             var dtoOutput = _bookBLL.GetAll();

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BookStore.DAL
 {
    
-    public class BookStoreEntities : DbContext 
+    public class BookStoreEntities : DbContext
     {
         public BookStoreEntities() : base("name=BookStoreConnection")
         {
