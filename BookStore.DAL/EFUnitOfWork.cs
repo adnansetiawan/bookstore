@@ -44,7 +44,7 @@ namespace BookStore.DAL
             }
             catch (DbEntityValidationException e)
             {
-                throw; 
+                throw e; 
             }
         }
 

@@ -9,6 +9,10 @@ namespace BookStore.MVC.Models.ViewModel.Book
 {
     public class FormBookViewModel
     {
+        public FormBookViewModel()
+        {
+            CategorySelectList = new SelectList(Enumerable.Empty<SelectListItem>());
+        }
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
