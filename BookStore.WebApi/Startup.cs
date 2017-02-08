@@ -54,14 +54,23 @@ namespace BookStore.WebApi
 
         private Container SimpleInjectorResolver(IAppBuilder app)
         {
-           
-            // Create the container as usual.
-            var container = new Container();
+            
+        
+
+        // Create the container as usual.
+        var container = new Container();
+            app.Use(async (context, next) =>
+            {
+                using (var scope = container.BeginExecutionContextScope())
+                {
+                    await next.Invoke();
+                }
+            });
             container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle();
             // Register your types, for instance using the scoped lifestyle:
-            container.RegisterSingleton<IUnitOfWork>(() => new EFUnitOfWork());
-            container.Register<ICategoryBLL, CategoryBLL>();
-            container.Register<IBookBLL, BookBLL>();
+            container.Register<IUnitOfWork>(()=>new EFUnitOfWork(), Lifestyle.Scoped);
+            container.Register<ICategoryBLL, CategoryBLL>(Lifestyle.Scoped);
+            container.Register<IBookBLL, BookBLL>(Lifestyle.Scoped);
             container.Register<IApplicationUserManager, ApplicationUserManager>(Lifestyle.Singleton);
             container.Register<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(new ApplicationEntities()), Lifestyle.Singleton);
             container.Register<IdentityFactoryOptions<ApplicationUserManager>>(() => new IdentityFactoryOptions<ApplicationUserManager>()
