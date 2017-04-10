@@ -209,6 +209,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,9 +217,13 @@
     </Compile>
     <Compile Include="Mapper\DtoToModelMapper.cs" />
     <Compile Include="Mapper\ModelToDtoMapper.cs" />
+    <Compile Include="Models\Request\Book\Create\CreateBookRequest.cs" />
     <Compile Include="Models\Request\Category\Create\CreateCategoryRequest.cs" />
     <Compile Include="Models\Response\BaseMessageResponse.cs" />
     <Compile Include="Models\Response\BaseResponseObjectModel.cs" />
+    <Compile Include="Models\Response\Book\BookResponse.cs" />
+    <Compile Include="Models\Response\Book\Create\CreateBookResponse.cs" />
+    <Compile Include="Models\Response\Book\GetAll\GetAllBookResponse.cs" />
     <Compile Include="Models\Response\Category\Create\CreateCategoryResponse.cs" />
     <Compile Include="Models\Response\Category\CategoryResponse.cs" />
     <Compile Include="Models\Response\Category\GetAll\GetAllCategoryResponse.cs" />
@@ -325,7 +330,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50676</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50676/</IISUrl>
+          <IISUrl>http://localhost</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

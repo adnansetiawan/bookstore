@@ -53,6 +53,8 @@ namespace BookStore.BLL
                 var newBook = Mapper.Map<Book>(newBookInput);
                 newBook.Category = category;
                 _bookRepo.Insert(newBook);
+                _unitOfWork.SaveChanges();
+                
                 
             }
             catch (BLLException ex)

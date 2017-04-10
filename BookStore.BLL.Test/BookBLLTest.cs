@@ -11,26 +11,28 @@ using BookStore.Entities.Databases;
 using BookStore.Repository.Mock;
 using BookStore.Entities.Mock;
 using BookStore.Entities.Inputs.Book;
-
+using System.Linq.Expressions;
 
 namespace BookStore.BLL.Test
 {
     [TestClass]
-    public class BookBLLTest : BaseBLLTest
+     public class BookBLLTest : BaseBLLTest
     {
         private IUnitOfWork _unitOfWork;
         private IGenericRepository<Book> _bookRepo;
         private IGenericRepository<Category> _categoryRepo;
-        private BookRepositoryMock _bookRepoMock;
-        private CategoryRepositoryMock _categoryRepoMock;
         private BookBLL _bookBLL;
         [TestInitialize]
-        public void Setup()
+        public override void Setup()
         {
+            base.Setup();
             _unitOfWork = Substitute.For<IUnitOfWork>();
-            _bookRepoMock = new BookRepositoryMock(BookMock.GetList());
-            _categoryRepoMock = new CategoryRepositoryMock(CategoryMock.GetList());
-           
+            _bookRepo = Substitute.For<IGenericRepository<Book>>();
+            _unitOfWork.GetGenericRepository<Book>().ReturnsForAnyArgs(_bookRepo);
+            _categoryRepo = Substitute.For<IGenericRepository<Category>>();
+            _unitOfWork.GetGenericRepository<Category>().ReturnsForAnyArgs(_categoryRepo);
+            _bookBLL = new BookBLL(_unitOfWork);
+
         }
 
         [TestCleanup]
@@ -40,56 +42,91 @@ namespace BookStore.BLL.Test
             _bookRepo = null;
             _categoryRepo = null;
             _bookBLL = null;
-            _categoryRepoMock = null;
-            _bookRepoMock = null;
-        }
-        public void SetUpBookBLL()
-        {
-            _bookRepo = _bookRepoMock.Repository;
-            _categoryRepo = _categoryRepoMock.Repository;
-            _unitOfWork.GetGenericRepository<Book>().ReturnsForAnyArgs(_bookRepo);
-            _unitOfWork.GetGenericRepository<Category>().ReturnsForAnyArgs(_categoryRepo);
-            _bookBLL = new BookBLL(_unitOfWork);
+
         }
        
-
+       
         [TestMethod]
-        public void When_GetAll_ReturnValidData()
+        public void When_GetAll_Then_All()
         {
-            SetUpBookBLL();
+           //arrange
             var expectedResult = BookMock.GetList();
+            _bookRepo.Get().Returns(expectedResult);
+
+            //act
             var actualResult = _bookBLL.GetAll();
-            Assert.AreNotEqual(0, actualResult.Books.Count);
+          
+            //assert
             Assert.AreEqual(expectedResult.Count, actualResult.Books.Count);
+            Assert.AreEqual(expectedResult.First().Title, actualResult.Books.First().Title);
         }
 
         [TestMethod]
-        public void When_GetByTitle_ReturnValidData()
+        [TestCategory("BookBLL")]
+        public void When_FindByTitle_Then_ReturnValidData()
         {
-            SetUpBookBLL();
-            var titleToFind = "Lord";
-            var actualResult = _bookBLL.GetByTitle(titleToFind);
-            Assert.AreNotEqual(0, actualResult.Books.Count);
-            Assert.IsTrue(actualResult.Books.First().Title.Contains(titleToFind));
+            //arrange
+            var matchBook = BookMock.GetList().First();
+            var matchBooks = new List<Book>
+            {
+                matchBook
+            };
+            _bookRepo.Get(Arg.Any<Expression<Func<Book, bool>>>()).Returns(matchBooks);
+
+            //act
+            var actualResult = _bookBLL.GetByTitle(matchBook.Title);
+            
+            //assert
+            Assert.AreEqual(matchBook.Title, actualResult.Books.First().Title);
         }
+
+
+        [TestMethod]
+        public void When_AddNewBook_Success()
+        {
+            //arrange
+            var newBook = new CreateNewBookInput
+            {
+                 Title = "Asp.Net Core",
+                 Price = 20,
+                 CategoryId = 1
+
+            };
+            _categoryRepo.GetById(newBook.CategoryId).Returns(CategoryMock.GetValidSingle());
+            try
+            {
+                //act
+                _bookBLL.AddNewBook(newBook);
+                _bookRepo.Received().Insert(Arg.Any<Book>());
+
+            }
+            catch
+            {
+                //assert
+                Assert.Fail();
+            }
+              
+         }
+
 
         [TestMethod]
         public void When_GetDetail_ReturnValidData()
         {
-            var expectedId = 1;
-            _bookRepoMock.GetByIdMock(expectedId);
-            SetUpBookBLL();
-            var actualResult = _bookBLL.GetDetail(expectedId);
-            Assert.AreEqual(expectedId, actualResult.Book.Id);
+            var firstBook = BookMock.GetList().First();
+            _bookRepo.GetById(firstBook.Id).Returns(firstBook);
+            var actualResult = _bookBLL.GetDetail(firstBook.Id);
+            Assert.AreEqual(firstBook.Id, actualResult.Book.Id);
         }
+
+
+
 
         [TestMethod]
         [ExpectedException(typeof(BLLException))]
-        public void When_Insert_ReturnCategoryNotFound()
+        public void When_AddNewBook_NotValidCategory_Then_ReturnException()
         {
-            var categoryIdNullData = 0;
-            _categoryRepoMock.GetByIdMock(categoryIdNullData);
-            SetUpBookBLL();
+            var categoryNull = CategoryMock.GetNull();
+            _categoryRepo.GetById(0).Returns(categoryNull);
             try
             {
                 _bookBLL.AddNewBook(BookMock.GetInputWithNotValidCategoryMock());
@@ -102,16 +139,10 @@ namespace BookStore.BLL.Test
                 throw ex;
             }
 
-
         }
 
-        [TestMethod]
-        public void When_Insert_IsSucess()
-        {
-            var categoryIdValid = 1;
-            _categoryRepoMock.GetByIdMock(categoryIdValid);
-            SetUpBookBLL();
-            _bookBLL.AddNewBook(BookMock.GetValidInputMock());          
-        }
+       
+
+
     }
 }

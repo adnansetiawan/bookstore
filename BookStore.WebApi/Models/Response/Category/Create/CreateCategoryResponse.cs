@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookStore.WebApi.Models.Response.Category.Create
 {
-    public class AddCategoryResponse : BaseMessageResponse
+    public class CreateCategoryResponse : BaseMessageResponse
     {
     }
 }

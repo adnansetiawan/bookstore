@@ -10,9 +10,16 @@ namespace BookStore.DAL
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private BookStoreEntities _context = new BookStoreEntities();
+        private BookStoreEntities _context;
         private bool _disposed;
-
+        public EFUnitOfWork()
+        {
+            _context = new BookStoreEntities();
+        }
+        public EFUnitOfWork(BookStoreEntities context)
+        {
+            _context = context;
+        }
         
 
         /// <summary>
@@ -37,7 +44,7 @@ namespace BookStore.DAL
             }
             catch (DbEntityValidationException e)
             {
-                throw; 
+                throw e; 
             }
         }
 

@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
 using BookStore.Entities.DTOs;
+using BookStore.Entities.Inputs.Book;
 using BookStore.Entities.Outputs;
+using BookStore.Entities.Outputs.Book;
 using BookStore.Entities.Outputs.Category;
+using BookStore.WebApi.Models.Request.Book.Create;
 using BookStore.WebApi.Models.Response;
+using BookStore.WebApi.Models.Response.Book;
+using BookStore.WebApi.Models.Response.Book.GetAll;
 using BookStore.WebApi.Models.Response.Category;
 using BookStore.WebApi.Models.Response.Category.GetAll;
 using System;
@@ -16,12 +21,15 @@ namespace BookStore.WebApi.Mapper
         public DtoToModelMapper()
         {
             CreateMap<BaseOutput, BaseMessageResponse>()
-                .Include<GetAllCategoryOutput, GetAllCategoryResponse>();
-
+                .Include<GetAllBookOutput, GetAllBookResponse>();
+        
             CreateMap<CategoryDto, CategoryResponse>();
+            CreateMap<BookDto, BookResponse>();
+            CreateMap<GetAllBookOutput, GetAllBookResponse>()
+               .ForMember(dest => dest.Data, opts => opts.MapFrom(src => src.Books));
             CreateMap<GetAllCategoryOutput, GetAllCategoryResponse>()
                 .ForMember(dest => dest.Data, opts => opts.MapFrom(src => src.Categories));
-             
+            
         }
     }
 }
